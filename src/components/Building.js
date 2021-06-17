@@ -71,7 +71,9 @@ const Building = (props) => {
         );
         
         if (perSecond) return (
-            {secondButtonElement}
+            <BuildingsWrapper>
+                {secondButtonElement}
+            </BuildingsWrapper>
         );
     }
 
