@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import Building from './components/Building';
+import Click from './components/Click';
 
 function App() {
+
+//  States
+  const [points, setPoints] = useState(0);
+  const [perSecondIncrement, setPerSecondIncrement] = useState(0);
+  const [perClickIncrement, setPerClickIncrement] = useState(1);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Click points={points} setPoints={setPoints} perClickIncrement={perClickIncrement} />
+      <Building points={points} setPoints={setPoints} perSecondIncrement={perSecondIncrement} setPerSecondIncrement={setPerSecondIncrement} perClickIncrement={perClickIncrement} setPerClickIncrement={setPerClickIncrement}></Building>
     </div>
   );
 }
