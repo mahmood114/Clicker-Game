@@ -6,6 +6,9 @@ const Building = (props) => {
     const [perSecBuildingPrice, setPerSecBuildingPrice] = useState(10);
     const [perClickBuildingPrice, setPerClickBuildingPrice] = useState(10);
     const [a, setA] = useState(0);
+    const [disablePerClick, setDisablePerClick] = useState(true);
+    const [disablePerSecond, setDisablePerSecond] = useState(true);
+
 
     // UseEffect
     useEffect(() => {
@@ -25,6 +28,7 @@ const Building = (props) => {
     }
 
     const buyBuildingPerClick = () => {
+        
         if (props.points >= perClickBuildingPrice){
             props.setPoints(props.points - perClickBuildingPrice);
             props.setPerClickIncrement(perClickIncrement => perClickIncrement + 1);
@@ -32,18 +36,49 @@ const Building = (props) => {
         }
     }
 
-    return (
-        <BuildingsWrapper>
+//  View
+    const ViewButtons = () => {
+        // Conditions
+        const perClick = props.points >= perClickBuildingPrice;
+        const perSecond = props.points >= perSecBuildingPrice;
+
+        // Elements
+        const clickButtonElement = (
             <BuyButtonWrapper>
-                <button  onClick={buyBuildingPerSec}>Buy 1 building for {perSecBuildingPrice}$</button>
-                <p>Generates +1$ per second</p>
-            </BuyButtonWrapper>
-            <BuyButtonWrapper>
-                <button  onClick={buyBuildingPerClick}>Buy 1 building for {perClickBuildingPrice}$</button>
+                <button onClick={buyBuildingPerClick}>Buy 1 building for {perClickBuildingPrice}$</button>
                 <p>Adds +1$ per click</p>
             </BuyButtonWrapper>
-            
-        </BuildingsWrapper>
+        );
+
+        const secondButtonElement = (
+            <BuyButtonWrapper>
+                <button onClick={buyBuildingPerSec}>Buy 1 building for {perSecBuildingPrice}$</button>
+                <p>Generates +1$ per second</p>
+            </BuyButtonWrapper>
+        );
+
+        if (perClick && perSecond) return (
+            <BuildingsWrapper>
+                {secondButtonElement}
+                {clickButtonElement}
+            </BuildingsWrapper>
+        );
+        
+        if (perClick) return (
+            <BuildingsWrapper>
+                {clickButtonElement}
+            </BuildingsWrapper>
+        );
+        
+        if (perSecond) return (
+            {secondButtonElement}
+        );
+    }
+
+    return (
+        <div>
+            {ViewButtons()}
+        </div>
     );
 };
 
