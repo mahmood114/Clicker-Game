@@ -6,41 +6,41 @@ const Building = (props) => {
     const [perSecBuildingPrice, setPerSecBuildingPrice] = useState(10);
     const [perClickBuildingPrice, setPerClickBuildingPrice] = useState(10);
     const [a, setA] = useState(0);
-    const [disablePerClick, setDisablePerClick] = useState(true);
-    const [disablePerSecond, setDisablePerSecond] = useState(true);
 
-
+    const points = props.points;
+    const setPoints = props.setPoints;
+    
     // UseEffect
     useEffect(() => {
-
         if (a >= 1)
-            setInterval(() => props.setPoints(points => points + 1), 1000);
+            setInterval(() => setPoints(points => points + 1), 1000);
+        // eslint-disable-next-line
     }, [a]);
 
     const buyBuildingPerSec = () => {
 
-        if(props.points >= perSecBuildingPrice){
-            props.setPoints(props.points - perSecBuildingPrice);
+        if(points >= perSecBuildingPrice){
+            setPoints(points - perSecBuildingPrice);
             setA(a => a+1);
             props.setPerSecondIncrement(perSecondIncrement => perSecondIncrement + 1);
-            setPerSecBuildingPrice((perSecBuildingPrice * 1.3).toFixed());
+            setPerSecBuildingPrice((perSecBuildingPrice * 2).toFixed());
         }
     }
 
     const buyBuildingPerClick = () => {
         
-        if (props.points >= perClickBuildingPrice){
-            props.setPoints(props.points - perClickBuildingPrice);
+        if (points >= perClickBuildingPrice){
+            setPoints(points - perClickBuildingPrice);
             props.setPerClickIncrement(perClickIncrement => perClickIncrement + 1);
-            setPerClickBuildingPrice((perClickBuildingPrice * 1.1).toFixed());
+            setPerClickBuildingPrice((perClickBuildingPrice * 1.5).toFixed());
         }
     }
 
 //  View
     const ViewButtons = () => {
         // Conditions
-        const perClick = props.points >= perClickBuildingPrice;
-        const perSecond = props.points >= perSecBuildingPrice;
+        const perClick = points >= perClickBuildingPrice;
+        const perSecond = points >= perSecBuildingPrice;
 
         // Elements
         const clickButtonElement = (
