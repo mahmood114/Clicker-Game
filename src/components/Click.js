@@ -10,7 +10,8 @@ const Click = (props) => {
             <PointsStyled>{props.points}$</PointsStyled>
             <ClickerButtonStyled>
                 <button onClick={incrementPoints}>Click me!</button>
-                {/* <p>+{props.perClickIncrement}$ per click</p> */}
+                <p>+{props.perClickIncrement}$ per click</p>
+                <p>+{props.perSecondIncrement}$ per second</p>
             </ClickerButtonStyled>
         </div>
     );

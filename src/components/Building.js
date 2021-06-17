@@ -20,7 +20,7 @@ const Building = (props) => {
             props.setPoints(props.points - perSecBuildingPrice);
             setA(a => a+1);
             props.setPerSecondIncrement(perSecondIncrement => perSecondIncrement + 1);
-            setPerSecBuildingPrice((perSecBuildingPrice * 1.2).toFixed());
+            setPerSecBuildingPrice((perSecBuildingPrice * 1.3).toFixed());
         }
     }
 
@@ -28,19 +28,19 @@ const Building = (props) => {
         if (props.points >= perClickBuildingPrice){
             props.setPoints(props.points - perClickBuildingPrice);
             props.setPerClickIncrement(perClickIncrement => perClickIncrement + 1);
-            setPerClickBuildingPrice((perClickBuildingPrice * 1.2).toFixed());
+            setPerClickBuildingPrice((perClickBuildingPrice * 1.1).toFixed());
         }
     }
 
     return (
         <BuildingsWrapper>
             <BuyButtonWrapper>
-                <button onClick={buyBuildingPerSec}>Buy 1 building for {perSecBuildingPrice}$</button>
-                <p>+{props.perSecondIncrement}$ per second</p>
+                <button  onClick={buyBuildingPerSec}>Buy 1 building for {perSecBuildingPrice}$</button>
+                <p>Generates +1$ per second</p>
             </BuyButtonWrapper>
             <BuyButtonWrapper>
-                <button onClick={buyBuildingPerClick}>Buy 1 building for {perClickBuildingPrice}$</button>
-                <p>+{props.perClickIncrement}$ per click</p>
+                <button  onClick={buyBuildingPerClick}>Buy 1 building for {perClickBuildingPrice}$</button>
+                <p>Adds +1$ per click</p>
             </BuyButtonWrapper>
             
         </BuildingsWrapper>
