@@ -1,4 +1,17 @@
 import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+
+    body {
+        background-color: ${props => props.theme.backgroundColor};
+        color: ${props => props.theme.mainColor}
+    }
+`;
+
+export const Background = styled.div`
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20190925/pngtree-abstract-halftone-dots-background-with-circular-style-image_315130.jpg");
+`;
 
 export const ClickerButtonStyled = styled.div`
     height: auto;
@@ -19,8 +32,8 @@ export const ClickerButtonStyled = styled.div`
 
         cursor: pointer;
 
-        :hover {
-            
+        :active{
+            transform: translateY(2px);
         }
     }
 
@@ -35,7 +48,7 @@ export const PointsStyled = styled.p`
     margin-bottom: 0;
 `;
 
-export const BuildingsWrapper = styled.div`
+export const ButtonsWrapper = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -44,7 +57,7 @@ export const BuildingsWrapper = styled.div`
     width: 60%;
 `;
 
-export const BuyButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div`
     display: inline-block;
     margin-top: 20px;
     margin-left: auto;
@@ -69,18 +82,18 @@ export const BuyButtonWrapper = styled.div`
         padding: 10px;
         
         background-color: white;
-        color: #007bff;
-        border: 1px solid #007bff;
+        color: #38b000;
+        border: 1px solid #38b000;
 
         transition: 0.2s;
         
         :hover{
-            background-color: #007bff;
+            background-color: #38b000;
             color: white;
         }
 
-        :disabled{
-            opacity: 0.5;
+        :active{
+            transform: translateY(2px);
         }
     }
 
@@ -90,4 +103,14 @@ export const Footer = styled.footer`
     text-align: center;
     opacity: 0.6;
 
+`;
+
+export const ThemeButton = styled.button`
+    margin: 10px;
+    font-size: 1.3em;
+    
+    color: ${props => props.theme.backgroundColor};
+    background-color: ${props => props.theme.mainColor}
+
+    
 `;
